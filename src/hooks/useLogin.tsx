@@ -15,13 +15,14 @@ const useLogin = () => {
 
   const [keys, setKeys] = useState<KeyPairsType | null>(hasKeys);
   const [fastestUrl, setFastUrl] = useState<string | null>(null);
-
+  console.log("env test")
+  console.log(process.env.REACT_APP_WEB3MQ_URL)
   const init = async () => {
     const tempPubkey = localStorage.getItem('PUBLIC_KEY') || '';
     const didKey = localStorage.getItem('DID_KEY') || '';
     const fastUrl = await Client.init({
-      connectUrl: localStorage.getItem('FAST_URL'),
-      app_key: 'vAUJTFXbBZRkEDRE',
+      connectUrl: process.env.REACT_APP_WEB3MQ_URL,
+      app_key: process.env.REACT_APP_WEB3MQ_KEY,
       didKey,
       tempPubkey,
     });
